@@ -1,5 +1,6 @@
-﻿using CalculadoraRest.Model;
-using CalculadoraRest.Services;
+﻿using CalculadoraRest.Business;
+using CalculadoraRest.Model;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalculadoraRest.Controllers
@@ -9,26 +10,27 @@ namespace CalculadoraRest.Controllers
     public class PersonsController : ControllerBase
     {
 
-        private IPersonService _personService;
+
+        private IPersonBusiness _personBusiness;
 
 
-        public PersonsController(IPersonService personService)
+        public PersonsController(IPersonBusiness personBusiness)
         {
-            _personService = personService;
+            _personBusiness = personBusiness;
         }
 
         // GET api/values
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
             if (person == null) return NotFound();
             return Ok(person);
         }
@@ -37,21 +39,21 @@ namespace CalculadoraRest.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Person person)
         {
-            return new ObjectResult(_personService.Create(person));
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         // PUT api/values/5
         [HttpPut]
         public ActionResult Put([FromBody] Person p)
         {
-            return new ObjectResult(_personService.Update(p));
+            return new ObjectResult(_personBusiness.Update(p));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }

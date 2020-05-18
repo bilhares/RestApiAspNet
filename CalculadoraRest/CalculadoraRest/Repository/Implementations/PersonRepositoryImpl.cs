@@ -1,17 +1,18 @@
 ﻿using CalculadoraRest.Model;
 using CalculadoraRest.Model.Context;
+using CalculadoraRest.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CalculadoraRest.Services.Implementations
+namespace CalculadoraRest.Business.Implementations
 {
-    public class PersonServiceImpl : IPersonService
+    public class PersonRepositoryImpl : IPersonRepository
     {
 
         private MySqlContext _context;
 
-        public PersonServiceImpl(MySqlContext context)
+        public PersonRepositoryImpl(MySqlContext context)
         {
             _context = context;
         }

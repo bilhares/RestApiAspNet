@@ -1,9 +1,9 @@
 ﻿using CalculadoraRest.Model;
 using System.Collections.Generic;
 
-namespace CalculadoraRest.Services
+namespace CalculadoraRest.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
         Person Create(Person person);
         Person FindById(int id);

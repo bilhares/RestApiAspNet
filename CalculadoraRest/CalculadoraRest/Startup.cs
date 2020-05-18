@@ -1,12 +1,13 @@
 ﻿using CalculadoraRest.Model.Context;
-using CalculadoraRest.Services;
-using CalculadoraRest.Services.Implementations;
+using CalculadoraRest.Business;
+using CalculadoraRest.Business.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CalculadoraRest.Repository;
 
 namespace CalculadoraRest
 {
@@ -27,7 +28,8 @@ namespace CalculadoraRest
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddScoped<IPersonService, PersonServiceImpl>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
